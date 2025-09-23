@@ -140,7 +140,6 @@ OpenAIRealtimeAudioOutput = _rt_audio_config.RealtimeAudioConfigOutput  # type: 
 _USER_AGENT = f"Agents/Python {__version__}"
 
 DEFAULT_MODEL_SETTINGS: RealtimeSessionModelSettings = {
-    "voice": "ash",
     "modalities": ["audio"],
     "input_audio_format": "pcm16",
     "output_audio_format": "pcm16",
