@@ -777,6 +777,12 @@ class RealtimeSession(RealtimeModelListener):
         if agent.prompt is not None:
             updated_settings["prompt"] = agent.prompt
 
+        if agent.voice is not None:
+            updated_settings["voice"] = agent.voice
+        
+        if agent.speed is not None:
+            updated_settings["speed"] = agent.speed
+
         instructions, tools, handoffs = await asyncio.gather(
             agent.get_system_prompt(self._context_wrapper),
             agent.get_all_tools(self._context_wrapper),

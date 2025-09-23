@@ -75,6 +75,16 @@ class RealtimeAgent(AgentBase, Generic[TContext]):
     Runs only if the agent produces a final output.
     """
 
+    voice: str | None = None
+    """The voice to use for this agent's audio responses. If not specified, will use the session default.
+    Available voices: "alloy", "ash", "coral", "echo", "fable", "onyx", "nova", "sage", "shimmer"
+    """
+
+    speed: float | None = None
+    """The speed to use for this agent's audio responses. If not specified, will use the session default.
+    Range: 0.25 to 4.0 (1.0 is normal speed, higher values are faster)
+    """
+
     hooks: RealtimeAgentHooks | None = None
     """A class that receives callbacks on various lifecycle events for this agent.
     """

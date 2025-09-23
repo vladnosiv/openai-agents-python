@@ -213,8 +213,6 @@ class OpenAIRealtimeWebSocketModel(RealtimeModel):
 
         if "tracing" in model_settings:
             self._tracing_config = model_settings["tracing"]
-        else:
-            self._tracing_config = "auto"
 
         url = options.get("url", f"wss://api.openai.com/v1/realtime?model={self.model}")
 
