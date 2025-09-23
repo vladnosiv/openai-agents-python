@@ -42,12 +42,6 @@ async def update_seat(confirmation_number: str, new_seat: str) -> str:
     return f"Updated seat to {new_seat} for confirmation number {confirmation_number}"
 
 
-@function_tool
-def get_weather(city: str) -> str:
-    """Get the weather in a city."""
-    return f"The weather in {city} is sunny."
-
-
 faq_agent = RealtimeAgent(
     name="FAQ Agent",
     handoff_description="A helpful agent that can answer questions about the airline.",
@@ -59,6 +53,8 @@ faq_agent = RealtimeAgent(
     2. Use the faq lookup tool to answer the question. Do not rely on your own knowledge.
     3. If you cannot answer the question, transfer back to the triage agent.""",
     tools=[faq_lookup_tool],
+    voice="kirill",
+    speed=1.2,
 )
 
 seat_booking_agent = RealtimeAgent(
@@ -73,6 +69,8 @@ seat_booking_agent = RealtimeAgent(
     3. Use the update seat tool to update the seat on the flight.
     If the customer asks a question that is not related to the routine, transfer back to the triage agent. """,
     tools=[update_seat],
+    voice="lera",
+    speed=1.2,
 )
 
 triage_agent = RealtimeAgent(
@@ -83,6 +81,8 @@ triage_agent = RealtimeAgent(
         "You are a helpful triaging agent. You can use your tools to delegate questions to other appropriate agents."
     ),
     handoffs=[faq_agent, realtime_handoff(seat_booking_agent)],
+    voice="alexander",
+    speed=1.2,
 )
 
 faq_agent.handoffs.append(triage_agent)

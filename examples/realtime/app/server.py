@@ -2,6 +2,7 @@ import asyncio
 import base64
 import json
 import logging
+import os
 import struct
 from contextlib import asynccontextmanager
 from typing import TYPE_CHECKING, Any
@@ -44,7 +45,27 @@ class RealtimeWebSocketManager:
         self.websockets[session_id] = websocket
 
         agent = get_starting_agent()
+
+        api_url = os.environ.get("API_URL")
+        api_key = os.environ.get("API_KEY")
+        
+        headers = None
+        if api_key:
+            headers = {"Authorization": f"api-key {api_key}"}
+            
         runner = RealtimeRunner(agent)
+
+        model_config = {}
+        if api_url:
+            model_config["url"] = api_url
+        if headers:
+            model_config["headers"] = headers
+
+        model_config["voice"] = "kirill"  # because sdk set ash as default
+
+        model_config["initial_model_settings"] = model_config
+
+        session_context = await runner.run(model_config=model_config)
         session_context = await runner.run()
         session = await session_context.__aenter__()
         self.active_sessions[session_id] = session
