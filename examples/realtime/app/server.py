@@ -66,7 +66,6 @@ class RealtimeWebSocketManager:
         model_config["initial_model_settings"] = model_config
 
         session_context = await runner.run(model_config=model_config)
-        session_context = await runner.run()
         session = await session_context.__aenter__()
         self.active_sessions[session_id] = session
         self.session_contexts[session_id] = session_context
