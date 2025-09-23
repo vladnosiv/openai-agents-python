@@ -168,7 +168,7 @@ class OpenAISTTTranscriptionSession(StreamedTranscriptionSession):
                         "type": "transcription",
                         "audio": {
                             "input": {
-                                "format": {"type": "audio/pcm", "rate": 24000},
+                                "format": {"type": "audio/pcm", "rate": 44100},
                                 "transcription": {"model": self._model},
                                 "turn_detection": self._turn_detection,
                             }

@@ -17,7 +17,7 @@ def to_realtime_audio_format(
     if input_audio_format is not None:
         if isinstance(input_audio_format, str):
             if input_audio_format in ["pcm16", "audio/pcm", "pcm"]:
-                format = AudioPCM(type="audio/pcm", rate=24000)
+                format = AudioPCM(type="audio/pcm", rate=44100)
             elif input_audio_format in ["g711_ulaw", "audio/pcmu", "pcmu"]:
                 format = AudioPCMU(type="audio/pcmu")
             elif input_audio_format in ["g711_alaw", "audio/pcma", "pcma"]:

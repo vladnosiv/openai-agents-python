@@ -28,7 +28,7 @@ else:
         from my_workflow import MyWorkflow
 
 CHUNK_LENGTH_S = 0.05  # 100ms
-SAMPLE_RATE = 24000
+SAMPLE_RATE = 44100
 FORMAT = np.int16
 CHANNELS = 1
 

@@ -219,14 +219,14 @@ class RealtimeDemo {
         try {
             this.stream = await navigator.mediaDevices.getUserMedia({
                 audio: {
-                    sampleRate: 24000,
+                    sampleRate: 44100,
                     channelCount: 1,
                     echoCancellation: true,
                     noiseSuppression: true
                 }
             });
 
-            this.audioContext = new AudioContext({ sampleRate: 24000, latencyHint: 'interactive' });
+            this.audioContext = new AudioContext({ sampleRate: 44100, latencyHint: 'interactive' });
             const source = this.audioContext.createMediaStreamSource(this.stream);
 
             // Create a script processor to capture audio data
@@ -566,7 +566,7 @@ class RealtimeDemo {
 
         // Initialize audio context if needed
         if (!this.playbackAudioContext) {
-            this.playbackAudioContext = new AudioContext({ sampleRate: 24000, latencyHint: 'interactive' });
+            this.playbackAudioContext = new AudioContext({ sampleRate: 44100, latencyHint: 'interactive' });
         }
 
         // Ensure context is running (autoplay policies can suspend it)
@@ -607,7 +607,7 @@ class RealtimeDemo {
                     float32Array[i] = int16Array[i] / 32768.0;
                 }
 
-                const audioBuffer = this.playbackAudioContext.createBuffer(1, float32Array.length, 24000);
+                const audioBuffer = this.playbackAudioContext.createBuffer(1, float32Array.length, 44100);
                 audioBuffer.getChannelData(0).set(float32Array);
 
                 const source = this.playbackAudioContext.createBufferSource();

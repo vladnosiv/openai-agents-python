@@ -19,7 +19,7 @@ from agents.realtime.model import RealtimeModelConfig
 
 # Audio configuration
 CHUNK_LENGTH_S = 0.04  # 40ms aligns with realtime defaults
-SAMPLE_RATE = 24000
+SAMPLE_RATE = 44100
 FORMAT = np.int16
 CHANNELS = 1
 ENERGY_THRESHOLD = 0.015  # RMS threshold for barge‑in while assistant is speaking

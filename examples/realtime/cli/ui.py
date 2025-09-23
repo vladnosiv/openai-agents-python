@@ -15,7 +15,7 @@ from textual.widgets import RichLog, Static
 from typing_extensions import override
 
 CHUNK_LENGTH_S = 0.05  # 50ms
-SAMPLE_RATE = 24000
+SAMPLE_RATE = 44100
 FORMAT = np.int16
 CHANNELS = 1
 

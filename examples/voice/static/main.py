@@ -81,7 +81,7 @@ async def main():
                 print(f"Received lifecycle event: {event.event}")
 
         # Add 1 second of silence to the end of the stream to avoid cutting off the last audio.
-        player.add_audio(np.zeros(24000 * 1, dtype=np.int16))
+        player.add_audio(np.zeros(44100 * 1, dtype=np.int16))
 
 
 if __name__ == "__main__":

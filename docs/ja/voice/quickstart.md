@@ -108,13 +108,13 @@ from agents.voice import AudioInput
 
 # For simplicity, we'll just create 3 seconds of silence
 # In reality, you'd get microphone data
-buffer = np.zeros(24000 * 3, dtype=np.int16)
+buffer = np.zeros(44100 * 3, dtype=np.int16)
 audio_input = AudioInput(buffer=buffer)
 
 result = await pipeline.run(audio_input)
 
 # Create an audio player using `sounddevice`
-player = sd.OutputStream(samplerate=24000, channels=1, dtype=np.int16)
+player = sd.OutputStream(samplerate=44100, channels=1, dtype=np.int16)
 player.start()
 
 # Play the audio stream as it comes in
@@ -176,13 +176,13 @@ agent = Agent(
 
 async def main():
     pipeline = VoicePipeline(workflow=SingleAgentVoiceWorkflow(agent))
-    buffer = np.zeros(24000 * 3, dtype=np.int16)
+    buffer = np.zeros(44100 * 3, dtype=np.int16)
     audio_input = AudioInput(buffer=buffer)
 
     result = await pipeline.run(audio_input)
 
     # Create an audio player using `sounddevice`
-    player = sd.OutputStream(samplerate=24000, channels=1, dtype=np.int16)
+    player = sd.OutputStream(samplerate=44100, channels=1, dtype=np.int16)
     player.start()
 
     # Play the audio stream as it comes in

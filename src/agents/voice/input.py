@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from ..exceptions import UserError
 from .imports import np, npt
 
-DEFAULT_SAMPLE_RATE = 24000
+DEFAULT_SAMPLE_RATE = 44100
 
 
 def _buffer_to_audio_file(
@@ -47,7 +47,7 @@ class AudioInput:
     """
 
     frame_rate: int = DEFAULT_SAMPLE_RATE
-    """The sample rate of the audio data. Defaults to 24000."""
+    """The sample rate of the audio data. Defaults to 44100."""
 
     sample_width: int = 2
     """The sample width of the audio data. Defaults to 2."""

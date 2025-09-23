@@ -16,7 +16,7 @@ def test_to_realtime_audio_format_from_strings():
 
 
 def test_to_realtime_audio_format_passthrough_and_unknown_logs():
-    fmt = AudioPCM(type="audio/pcm", rate=24000)
+    fmt = AudioPCM(type="audio/pcm", rate=44100)
     # Passing a RealtimeAudioFormats should return the same instance
     assert to_realtime_audio_format(fmt) is fmt
 
