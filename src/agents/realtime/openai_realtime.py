@@ -86,7 +86,7 @@ from agents.handoffs import Handoff
 from agents.prompts import Prompt
 from agents.realtime._default_tracker import ModelAudioTracker
 from agents.realtime.audio_formats import to_realtime_audio_format
-from agents.tool import FunctionTool, Tool
+from agents.tool import FileSearchTool, FunctionTool, Tool, WebSearchTool
 from agents.util._types import MaybeAwaitable
 
 from ..exceptions import UserError
@@ -893,16 +893,33 @@ class OpenAIRealtimeWebSocketModel(RealtimeModel):
     ) -> list[OpenAISessionFunction]:
         converted_tools: list[OpenAISessionFunction] = []
         for tool in tools:
-            if not isinstance(tool, FunctionTool):
-                raise UserError(f"Tool {tool.name} is unsupported. Must be a function tool.")
-            converted_tools.append(
-                OpenAISessionFunction(
-                    name=tool.name,
-                    description=tool.description,
-                    parameters=tool.params_json_schema,
-                    type="function",
+            if isinstance(tool, FunctionTool):
+                converted_tools.append(
+                    OpenAISessionFunction(
+                        name=tool.name,
+                        description=tool.description,
+                        parameters=tool.params_json_schema,
+                        type="function",
+                    )
                 )
-            )
+            elif isinstance(tool, WebSearchTool):
+                converted_tools.append(
+                    OpenAISessionFunction(
+                        name='web_search',
+                        description='',
+                        parameters={},
+                    )
+                )
+            elif isinstance(tool, FileSearchTool):
+                converted_tools.append(
+                    OpenAISessionFunction(
+                        name='file_search',
+                        description=','.join(tool.vector_store_ids),
+                        parameters={},
+                    )
+                )
+            else:
+                raise UserError(f"Tool {tool.name} is unsupported.")
 
         for handoff in handoffs:
             converted_tools.append(

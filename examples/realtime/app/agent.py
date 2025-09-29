@@ -1,6 +1,7 @@
 from agents import function_tool
 from agents.extensions.handoff_prompt import RECOMMENDED_PROMPT_PREFIX
 from agents.realtime import RealtimeAgent, realtime_handoff
+from agents.tool import WebSearchTool
 
 """
 When running the UI example locally, you can edit this file to change the setup. THe server
@@ -52,7 +53,7 @@ faq_agent = RealtimeAgent(
     1. Identify the last question asked by the customer.
     2. Use the faq lookup tool to answer the question. Do not rely on your own knowledge.
     3. If you cannot answer the question, transfer back to the triage agent.""",
-    tools=[faq_lookup_tool],
+    tools=[faq_lookup_tool, WebSearchTool()],
     voice="kirill",
     speed=1.2,
 )
